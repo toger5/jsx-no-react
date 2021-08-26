@@ -87,16 +87,23 @@ const createAndAppendSVG = (tag, attrs, ...children) => {
   return element;
 }
 
-export default function(tag, attrs, ...children) {
+
+function converter(tag, attrs, ...children) { 
   if (tag === "svg") {
     return createAndAppendSVG(tag, attrs, ...children);
   }
 
   const elem = createElement(tag, attrs);
-
+  
   for (const child of children) {
     appendChild(elem, child);
   }
-
+  
   return elem;
+}
+
+
+export default {
+  Fragment: () => new DocumentFragment(),
+  createElement: converter
 }

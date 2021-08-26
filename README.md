@@ -10,26 +10,28 @@
 yarn add jsx-no-react
 ```
 
-You'll also need to hook the `jsxElem` function into the JSX transformation, for which you should probably use [babel](https://www.npmjs.com/package/babel-plugin-transform-react-jsx), which you can install and setup fairly simply:
+You'll also need to hook the `jsxElem` function into the JSX transformation, for which you should probably use [babel](https://www.npmjs.com/package/@babel/preset-react), which you can install and setup fairly simply:
 
 ```sh
-yarn add babel-plugin-transform-react-jsx babel-preset-env
+yarn add "@babel/preset-react babel-preset-env
 ```
 
 and configure babel to correctly transform JSX with a `.babelrc` something like:
 
 ```json
 {
-  "presets": ["env"],
-  "plugins": [
+  "presets": [
+    "@babel/preset-env",
     [
-      "transform-react-jsx",
+      "@babel/preset-react",
       {
-        "pragma": "jsxElem"
+        "pragma": "jsxElem.createElement",
+        "pragmaFrag": "jsxElem.Fragment"
       }
     ]
   ]
 }
+
 ```
 
 ## Usage
@@ -128,6 +130,24 @@ function App() {
       <Hello name="bar" />
     </div>
   );
+}
+
+render(<App />, document.body);
+```
+##### Fragments
+
+```javascript
+function Hello() {
+  return <>
+    <h1>Hello</h1>
+    <h1>world</h1>
+  </>;
+}
+
+function App() {
+  return <div>
+    <Hello />
+  </div>;
 }
 
 render(<App />, document.body);

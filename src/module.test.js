@@ -108,6 +108,19 @@ describe("jsxElement usage", () => {
 
     expect(element.outerHTML).toEqual("<div><h1>Hello foo</h1><i>..................................................</i><h1>Hello bar</h1></div>");
   });
+
+  it("support fragments", () => {
+    function Hello(props) {
+      return <>
+        <h1>Hello</h1>
+        <h1>world</h1>
+      </>;
+    }
+
+    const element = <div><Hello /></div>;
+    
+    expect(element.innerHTML).toEqual("<h1>Hello</h1><h1>world</h1>");
+  });
 });
 
 describe("render", () => {
