@@ -10,6 +10,8 @@
 yarn add jsx-no-react
 ```
 
+### Usage in Babel
+
 You'll also need to hook the `jsxElem` function into the JSX transformation, for which you should probably use [babel](https://www.npmjs.com/package/@babel/preset-react), which you can install and setup fairly simply:
 
 ```sh
@@ -33,6 +35,10 @@ and configure babel to correctly transform JSX with a `.babelrc` something like:
 }
 
 ```
+
+### Usage in esbuild
+
+Details on how to inject jsxElem as builder can be found [in the esbuild documentation](https://esbuild.github.io/content-types/#using-jsx-without-react). Feel free to open a PR to add specific instructions here.
 
 ## Usage
 
